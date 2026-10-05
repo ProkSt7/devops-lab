@@ -8,6 +8,7 @@ exec >> "$LOGFILE"
 
 echo "===================="
 echo "Server health check started - $(date)"
+echo "Running from Git-managed server health check"
 echo "===================="
 
 echo "Hostname:"
