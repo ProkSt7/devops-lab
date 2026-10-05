@@ -40,6 +40,15 @@ else
     echo "Memory status: OK ($MEMORY_USAGE%)"
 fi
 
+echo "CPU usage:"
+CPU_USAGE=$(top -bn2 -d 0.1 | awk '/Cpu\(s\)/ {idle=$8} END {printf "%.0f", 100-idle}')
+if [ "${CPU_USAGE%.*}" -ge 80 ]; then
+    echo "CPU status: WARNING (${CPU_USAGE}%)"
+    STATUS="WARNING"
+else
+    echo "CPU status: OK (${CPU_USAGE}%)"
+fi
+
 echo "Overall status: $STATUS"
 
 echo "========================"
